@@ -30,8 +30,8 @@ Each step adds one concept and ends with a commit and a deploy.
 - [x] Run locally; `/actuator/health` returns `UP`
 - [x] First commit, pushed to a public GitHub repo
 - [x] `Dockerfile`; build and run the image locally
-- [ ] Deploy in Coolify: Dockerfile build pack, port 8080, no domain, health check `/actuator/health`, memory limit 512 MB, network alias `bt-auth-server`
-- [ ] In `bt-auth`: add a `checks.authServer` entry to `/api/health` that fetches `http://bt-auth-server:8080/actuator/health` (URL from an environment variable), and show it in the client
+- [x] Deploy in Coolify: Dockerfile build pack, port 8080, no domain, health check `/actuator/health`, memory limit 512 MB, network alias `bt-auth-server`
+- [x] In `bt-auth`: add a `checks.authServer` entry to `/api/health` that fetches `http://bt-auth-server:8080/actuator/health` (URL from an environment variable), and show it in the client
 
 Done when the "Check backend" button on auth.bjorntirsen.se reports the auth server as healthy.
 
