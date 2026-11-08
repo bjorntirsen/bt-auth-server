@@ -1,0 +1,2 @@
+-- Baseline: the schema is managed by Flyway from here on.
+-- Tables arrive with the modules that own them, starting with users.

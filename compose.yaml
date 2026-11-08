@@ -1,9 +1,9 @@
 services:
-  oracle:
-    image: gvenzl/oracle-free:23-slim-faststart
-    ports:
-      - "1521"
+  postgres:
+    image: 'postgres:18'
     environment:
-      ORACLE_PASSWORD: localdev
-      APP_USER: bt_auth
-      APP_USER_PASSWORD: localdev
+      - 'POSTGRES_DB=bt_auth'
+      - 'POSTGRES_USER=bt_auth'
+      - 'POSTGRES_PASSWORD=secret'
+    ports:
+      - '5432'
