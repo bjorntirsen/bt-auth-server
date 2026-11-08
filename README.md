@@ -17,7 +17,7 @@ Work in progress. The service builds, deploys and reports its health; the identi
 
 ## Stack
 
-Java 25 (Amazon Corretto), Spring Boot, Spring Authorization Server, Spring Modulith, Maven. Planned: Oracle Database Free with Spring Data JDBC and Flyway.
+Java 25 (Amazon Corretto), Spring Boot, Spring Authorization Server, Spring Modulith, Maven, PostgreSQL with Spring Data JDBC and Flyway.
 
 ## Running locally
 
