@@ -13,7 +13,7 @@ A Spring Boot authorization server, built by hand as a learning project. It is t
 
 - Maven, Java 25 (Amazon Corretto), Spring Boot, YAML configuration.
 - Base package `se.bjorntirsen.auth`.
-- Oracle Database Free as the database, in a container (`gvenzl/oracle-free`).
+- PostgreSQL as the database, in a container (postgres:18).
 - Spring Data JDBC for persistence, Flyway for migrations.
 - Spring Authorization Server for the protocol endpoints; nothing in OAuth2/OIDC is hand-rolled.
 - Modular monolith: top-level packages are modules, verified with Spring Modulith. Modules expose a small public API; side effects across modules go through application events.
@@ -39,14 +39,14 @@ Each step adds one concept and ends with a commit and a deploy.
 
 Done when the "Check backend" button on auth.bjorntirsen.se reports the auth server as healthy.
 
-### 2. Oracle and a first migration
+### 2. PostgreSQL and a first migration
 
-- [ ] `compose.yaml` with Oracle Free; Spring Boot Docker Compose support starts it on `spring-boot:run`
-- [ ] Oracle driver, Spring Data JDBC, Flyway
+- [ ] `compose.yaml` with PostgreSQL; Spring Boot Docker Compose support starts it on `spring-boot:run`
+- [ ] PostgreSQL driver, Spring Data JDBC, Flyway
 - [ ] First Flyway migration
 - [ ] Database included in the health check
-- [ ] Integration test against Oracle with Testcontainers
-- [ ] Oracle on the VPS (see open questions)
+- [ ] Integration test against PostgreSQL with Testcontainers
+- [ ] PostgreSQL on the VPS as a Coolify database resource
 - [ ] In `bt-auth`: remove Drizzle, `pg`, the Postgres compose setup, `DATABASE_URL` and the database check; decide what `ok` and the 503 depend on afterward
 
 Done when the deployed auth server reports its own database as healthy.
@@ -64,7 +64,7 @@ Done when a user can be registered and found again in an integration test.
 
 - [ ] Spring Security form login against the `users` module
 - [ ] A session-based security filter chain (not stateless), with session fixation protection
-- [ ] Sessions stored in Oracle with Spring Session JDBC, so logins survive a redeploy
+- [ ] Sessions stored in PostgreSQL with Spring Session JDBC, so logins survive a redeploy
 - [ ] Cookie attributes decided: `HttpOnly`, `Secure`, `SameSite`
 - [ ] CSRF protection for a React login form
 - [ ] Custom login page served by `bt-auth` (React), posting to this service
@@ -95,7 +95,7 @@ Done when the full authorization code flow works against the deployed server.
 
 ### 7. Tokens and claims
 
-- [ ] An `OAuth2AuthorizationService` on Oracle that stores hashes of authorization codes and refresh tokens instead of their values, and does not store JWT access tokens
+- [ ] An `OAuth2AuthorizationService` on PostgreSQL that stores hashes of authorization codes and refresh tokens instead of their values, and does not store JWT access tokens
 - [ ] A token customizer that sets `sub` to an HMAC of the internal user ID, keyed by a secret from the environment
 - [ ] No email or other personal data in tokens
 
@@ -106,7 +106,7 @@ Done when the full authorization code flow works against the deployed server.
 
 ### 9. First client
 
-- [ ] A `clients` module: registered clients stored in Oracle instead of configuration
+- [ ] A `clients` module: registered clients stored in PostgreSQL instead of configuration
 - [ ] `games.bjorntirsen.se` signs users in through `auth.bjorntirsen.se`
 - [ ] Pairwise `sub`: the client ID added to the HMAC input, so each client sees a different identifier for the same user
 - [ ] RP-initiated logout from the client
@@ -133,8 +133,4 @@ Done when the full authorization code flow works against the deployed server.
 - OpenAPI contract for custom (non-OIDC) endpoints: `springdoc-openapi` here, `openapi-typescript` in `bt-auth`, checked in CI.
 - Renovate, updating the Spring Boot parent rather than individual Spring libraries.
 - A fully internal variant behind WireGuard or Tailscale, to mimic a staff-only identity provider.
-
-## Open questions
-
-- **Memory on the VPS.** It has 4 GB. Oracle Free wants about 2 GB plus a few hundred MB per JVM. Check `free -h` and `docker stats --no-stream` before step 2's deploy; the fallbacks are adding swap, a bigger plan, or running Oracle only locally and in tests.
-- **Maven or Gradle.** Match what the team at work uses if it differs.
+- An Oracle Database Free job in CI with Testcontainers, to keep migrations portable.
