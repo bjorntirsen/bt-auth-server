@@ -41,12 +41,12 @@ Done when the "Check backend" button on auth.bjorntirsen.se reports the auth ser
 
 ### 2. PostgreSQL and a first migration
 
-- [ ] `compose.yaml` with PostgreSQL; Spring Boot Docker Compose support starts it on `spring-boot:run`
-- [ ] PostgreSQL driver, Spring Data JDBC, Flyway
-- [ ] First Flyway migration
-- [ ] Database included in the health check
-- [ ] Integration test against PostgreSQL with Testcontainers
-- [ ] PostgreSQL on the VPS as a Coolify database resource
+- [x] `compose.yaml` with PostgreSQL; Spring Boot Docker Compose support starts it on `spring-boot:run`
+- [x] PostgreSQL driver, Spring Data JDBC, Flyway
+- [x] First Flyway migration
+- [x] Database included in the health check
+- [x] Integration test against PostgreSQL with Testcontainers
+- [x] PostgreSQL on the VPS as a Coolify database resource
 - [ ] In `bt-auth`: remove Drizzle, `pg`, the Postgres compose setup, `DATABASE_URL` and the database check; decide what `ok` and the 503 depend on afterward
 
 Done when the deployed auth server reports its own database as healthy.
