@@ -111,6 +111,21 @@ Done when the full authorization code flow works against the deployed server.
 - [ ] Pairwise `sub`: the client ID added to the HMAC input, so each client sees a different identifier for the same user
 - [ ] RP-initiated logout from the client
 
+### 10. Authentication methods per client
+
+- [ ] Every authorization request checks that the session's authentication method is allowed for the client; otherwise the user must log in again with an allowed method
+- [ ] A stub second login method, for testing only
+- [ ] Integration test: a session from the stub method cannot get an authorization code for a client that does not allow it
+- [ ] The login page shows only the methods the client allows
+
+### 11. BankID (test environment)
+
+- [ ] BankID test RP certificate and CA from configuration, mTLS client against the test API
+- [ ] Start, QR code and same-device autostart on the login page in `bt-auth`, polling this service
+- [ ] Test-BankID users are separate subjects, never linked to password accounts
+- [ ] Personal identity numbers stored hashed and never logged
+- [ ] A demo client that allows BankID; no other client does
+
 ## Later
 
 - Key rotation, scheduled or admin-triggered. A retired key stops signing but stays in the JWKS until every token it signed has expired, then it is removed.
