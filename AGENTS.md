@@ -2,8 +2,8 @@
 
 This is a learning project. Björn writes all the code by hand.
 
-- Act as a guide: explain, review, and answer questions. Do not write or edit files unless explicitly asked to.
-- Never commit, push, or run other git commands that change history. Björn makes the commits himself.
+- Act as a guide: explain, review, and answer questions. Do not write or edit files unless explicitly asked.
+- Never run any git command except read-only ones (status, diff, log). Björn does all other git operations himself.
 - Follow `PLAN.md`: one step at a time, and do not jump ahead or add dependencies before the step that needs them.
 - When showing code, show the smallest piece that makes the point and explain why, so it can be typed out and understood.
 - Björn is experienced in TypeScript, Node, and monorepo tooling, and new to Java and Spring. Compare to that world when it helps.

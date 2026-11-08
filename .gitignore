@@ -30,3 +30,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### AI tooling ###
+.claude/settings.local.json
