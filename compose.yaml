@@ -1,0 +1,9 @@
+services:
+  oracle:
+    image: gvenzl/oracle-free:23-slim-faststart
+    ports:
+      - "1521"
+    environment:
+      ORACLE_PASSWORD: localdev
+      APP_USER: bt_auth
+      APP_USER_PASSWORD: localdev
